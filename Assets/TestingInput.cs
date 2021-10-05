@@ -21,9 +21,8 @@ public class TestingInput : MonoBehaviour
     {
         OVRInput.Controller activeController = OVRInput.GetActiveController();
 
-
         float indexTrigger = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
-        if (indexTrigger != 0.0f)
+        if (indexTrigger != 0.0f) //if left trigger is depressed
         {
 
             r.material.color = Color.blue; //
@@ -33,7 +32,7 @@ public class TestingInput : MonoBehaviour
         }
 
         float secindexTrigger = OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger);
-        if (secindexTrigger != 0.0f)
+        if (secindexTrigger != 0.0f) //if right trigger is deprressed
         {
 
             r.material.color = Color.cyan; //
@@ -48,9 +47,17 @@ public class TestingInput : MonoBehaviour
 
         }
 
+        if(indexTrigger != 0.0f && secindexTrigger != 0.0f)
+        {
+            //both are not zero
+        }
 
+        if (indexTrigger != 0.0f || secindexTrigger != 0.0f)
+        {
+            //either one are not zero
+        }
 
-
+        
     }
 
     IEnumerator WaitAndStopHaptics()

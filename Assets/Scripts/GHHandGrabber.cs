@@ -4,7 +4,7 @@ using UnityEngine;
 using OculusSampleFramework;
 
 
-public class GHRightHand : OVRGrabber 
+public class GHHandGrabber : OVRGrabber 
 {
     
 

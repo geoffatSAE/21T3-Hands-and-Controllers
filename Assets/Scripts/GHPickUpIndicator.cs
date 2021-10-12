@@ -9,6 +9,7 @@ public class GHPickUpIndicator : OVRGrabbable
     // Start is called before the first frame update
     void Start()
     {
+        base.Start();
         r = GetComponent<Renderer>();
     }
 

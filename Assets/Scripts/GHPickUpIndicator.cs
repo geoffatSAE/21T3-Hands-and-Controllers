@@ -6,11 +6,14 @@ public class GHPickUpIndicator : OVRGrabbable
 {
     Renderer r;
 
+    AudioSource myAudioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         base.Start();
         r = GetComponent<Renderer>();
+        myAudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -24,6 +27,12 @@ public class GHPickUpIndicator : OVRGrabbable
         base.GrabBegin(hand, grabPoint);
         //now do the things I want to do
         r.material.color = Color.blue;
+
+        //add the sound play for the pickup
+        myAudioSource.Play();
+
+        //add the haptic to match the sound
+
     }
 
 

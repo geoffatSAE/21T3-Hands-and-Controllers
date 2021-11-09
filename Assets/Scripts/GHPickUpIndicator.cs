@@ -7,6 +7,8 @@ public class GHPickUpIndicator : OVRGrabbable
     Renderer r;
 
     AudioSource myAudioSource;
+    public AudioClip soundFX;
+    OVRHapticsClip ovrClip;
 
     // Start is called before the first frame update
     void Start()
@@ -14,6 +16,9 @@ public class GHPickUpIndicator : OVRGrabbable
         base.Start();
         r = GetComponent<Renderer>();
         myAudioSource = GetComponent<AudioSource>();
+
+        //create haptic clip 
+        ovrClip = new OVRHapticsClip(soundFX);
     }
 
     // Update is called once per frame
@@ -25,13 +30,27 @@ public class GHPickUpIndicator : OVRGrabbable
     public override void GrabBegin(OVRGrabber hand, Collider grabPoint)
     {
         base.GrabBegin(hand, grabPoint);
+        
+        
         //now do the things I want to do
         r.material.color = Color.blue;
 
         //add the sound play for the pickup
         myAudioSource.Play();
 
+        
         //add the haptic to match the sound
+        
+        //and pass to correct controller
+        if (hand.gameObject.name == "RightControllerAnchor")
+        {
+            OVRHaptics.RightChannel.Preempt(ovrClip);
+        } else if(hand.gameObject.name == "LeftControllerAnchor")
+        {
+            OVRHaptics.LeftChannel.Preempt(ovrClip);
+        }
+               
+        
 
     }
 
